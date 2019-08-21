@@ -9,11 +9,13 @@ public class DriverFactory {
 	private static WebDriverWait wait;
 
 	public void inicializaGoogleChrome() {
-		if (! driverEstaInicializado()) {
+		if (!driverEstaInicializado()) {
+			System.out.println("c - iniciado");
 			String pathDriverChrome = System.getProperty("user.dir") + "\\drivers\\chromedriver.exe";
 			System.setProperty("webdriver.chrome.driver", pathDriverChrome);
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
+			System.out.println("iniciado");
 		}else {
 			System.out.println("Driver ja inicializado");
 		}
@@ -46,6 +48,7 @@ public class DriverFactory {
 		if (driverEstaInicializado()) {
 			driver.quit();
 			driver = null;
+			System.out.println("encerrado");
 		}else {
 			System.out.println("Nao encontrou o driver inicializado");
 		}

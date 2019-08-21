@@ -1,21 +1,14 @@
 package br.com.lucas.testes;
 
-import org.junit.Test;
-import org.openqa.selenium.By;
+import org.junit.runner.RunWith;
 
-import br.com.lucas.Utils.Utils;
-import br.com.lucas.mapeamento.CenarioGoogleMapeamento;
+import cucumber.api.CucumberOptions;
+import cucumber.api.java.Before;
+import cucumber.api.junit.Cucumber;
 
-public class CenarioGoogleTest extends Utils{
 	
-	@Test
-	public void loginCenarioGoogle() {
-		inicializaGoogleChrome();
-		navega("https://www.google.com.br");
-		limpaEInsereTextoWait("google", CenarioGoogleMapeamento.getCampoPesquisar());
-		clicaWait(CenarioGoogleMapeamento.getBotaoPesquisarGoogle());
-		validoMensagemWait("Aproximadamente");
-		screenshot("CenarioGoogleTest");
-		encerra();
+	@RunWith(Cucumber.class)
+	@CucumberOptions(features = "features/CenarioGoogle.feature", glue = {	//caminho da feature do test
+			"" }, monochrome = true, dryRun = false)
+	public class CenarioGoogleTest {
 	}
-}
