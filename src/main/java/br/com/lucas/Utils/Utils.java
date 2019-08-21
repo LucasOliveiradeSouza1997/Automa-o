@@ -37,6 +37,7 @@ public class Utils extends DriverFactory{
 			System.out.println("Mensagem Validada com sucesso: " + mensagem);
 		} catch (Exception e) {
 			System.out.println("Erro na validacao da mensagem: " + mensagem);
+			assert(false);
 		}
 	}
 	

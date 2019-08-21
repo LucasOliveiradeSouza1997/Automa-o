@@ -10,7 +10,7 @@ public class TelaGoogle extends Utils{
 	}
 
 	public void digitoNaBarraDePesquisa(String pesquisa) {
-		limpaEInsereTextoWait("google", CenarioGoogleMapeamento.getCampoPesquisar());
+		limpaEInsereTextoWait(pesquisa, CenarioGoogleMapeamento.getCampoPesquisar());
 	}
 
 	public void clicoNoBotaoPesquisar() {
@@ -18,6 +18,6 @@ public class TelaGoogle extends Utils{
 	}
 
 	public void validoAMensagem(String mensagem) {
-		validoMensagemWait("Aproximadamente");
+		validoMensagemWait(mensagem);
 	}
 }

@@ -11,3 +11,4 @@ Feature: Pesquisa no Google
 	Examples: 
 	| pesquisa |mensagem		|
 	| rsi      |Aproximadamente |
+	| rsi2     |Aproximadamente2 |
