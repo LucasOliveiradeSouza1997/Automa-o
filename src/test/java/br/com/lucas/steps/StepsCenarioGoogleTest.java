@@ -1,7 +1,6 @@
 package br.com.lucas.steps;
 
 import br.com.lucas.telas.TelaGoogle;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

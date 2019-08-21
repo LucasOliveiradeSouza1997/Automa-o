@@ -18,22 +18,22 @@ public class Utils extends DriverFactory{
 	WebElement elemento;
 	
 	public void limpaEInsereTextoWait(String texto, By campo) {
-		getWebDriverWait().until(ExpectedConditions.elementToBeClickable(campo));
-		elemento = getDriver().findElement(campo);
+		DriverFactory.getInstanceWait().until(ExpectedConditions.elementToBeClickable(campo));
+		elemento = DriverFactory.getInstance().findElement(campo);
 		elemento.clear();
 		elemento.sendKeys(texto);
 	}
 	
 	public void clicaWait(By campo) {
-		getWebDriverWait().until(ExpectedConditions.elementToBeClickable(campo));
-		elemento = getDriver().findElement(campo);
+		DriverFactory.getInstanceWait().until(ExpectedConditions.elementToBeClickable(campo));
+		elemento = DriverFactory.getInstance().findElement(campo);
 		elemento.click();
 	}
 	
 	public void validoMensagemWait(String mensagem) {
 		try {
 			By byMensagem = By.xpath("//*[contains(text(),'"+mensagem+"')]");
-			getWebDriverWait().until(ExpectedConditions.elementToBeClickable(byMensagem));
+			DriverFactory.getInstanceWait().until(ExpectedConditions.elementToBeClickable(byMensagem));
 			System.out.println("Mensagem Validada com sucesso: " + mensagem);
 		} catch (Exception e) {
 			System.out.println("Erro na validacao da mensagem: " + mensagem);
@@ -43,7 +43,7 @@ public class Utils extends DriverFactory{
 	public void screenshot(String nomeTeste) {
 		try {
 			String pasta = System.getProperty("user.dir").concat("\\output");
-			TakesScreenshot source = (TakesScreenshot) getDriver();
+			TakesScreenshot source = (TakesScreenshot) DriverFactory.getInstance();
 			File scr = source.getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scr, new File(pasta+"\\Teste_"+ nomeTeste+".png"));
 		} catch(Exception ex){
