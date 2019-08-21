@@ -15,6 +15,7 @@ public class CenarioGoogleTest extends Utils{
 		limpaEInsereTextoWait("google", CenarioGoogleMapeamento.getCampoPesquisar());
 		clicaWait(CenarioGoogleMapeamento.getBotaoPesquisarGoogle());
 		validoMensagemWait("Aproximadamente");
+		screenshot("CenarioGoogleTest");
 		encerra();
 	}
 }
