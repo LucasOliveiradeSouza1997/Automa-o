@@ -1,7 +1,6 @@
-@suite
 Feature: Pesquisa no Google
 
-  Scenario Outline: Pesquisa no Google
+  Scenario Outline: Pesquisa No Google
 
 	Given acesso o site do google
 	And digito "<pesquisa>" na barra de Pesquisa

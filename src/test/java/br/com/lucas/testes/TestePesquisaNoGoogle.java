@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 
 	
 	@RunWith(Cucumber.class)
-	@CucumberOptions(features = "features/C2enarioGoogle.feature", glue = {	//caminho da feature do test
+	@CucumberOptions(features = "features/PesquisaNoGoogle.feature", glue = {	//caminho da feature do test
 			"" }, monochrome = true, dryRun = false)
-	public class C2enarioGoogleTest {
+	public class TestePesquisaNoGoogle {
 	}

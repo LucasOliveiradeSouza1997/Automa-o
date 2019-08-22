@@ -6,6 +6,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 	
 	@RunWith(Suite.class)
-	@SuiteClasses({CenarioGoogleTest.class,C2enarioGoogleTest.class})	
+	@SuiteClasses({TestePesquisaNoGoogle.class})	
 	public class TestRunner {
 	}

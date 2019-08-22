@@ -5,11 +5,11 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
-public class StepsCenarioGoogleTest {
+public class StepsPesquisaNoGoogle {
 		
 		private static TelaGoogle telaGoogle;
 		
-		public StepsCenarioGoogleTest() {
+		public StepsPesquisaNoGoogle() {
 			telaGoogle = new TelaGoogle();
 		}
 
