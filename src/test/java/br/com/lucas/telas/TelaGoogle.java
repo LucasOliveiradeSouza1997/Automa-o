@@ -1,7 +1,7 @@
 package br.com.lucas.telas;
 
 import br.com.lucas.Utils.Utils;
-import br.com.lucas.mapeamento.CenarioGoogleMapeamento;
+import br.com.lucas.mapeamento.MapeamentoPesquisaNoGoogle;
 
 public class TelaGoogle extends Utils{
 
@@ -10,11 +10,11 @@ public class TelaGoogle extends Utils{
 	}
 
 	public void digitoNaBarraDePesquisa(String pesquisa) {
-		limpaEInsereTextoWait(pesquisa, CenarioGoogleMapeamento.getCampoPesquisar());
+		limpaEInsereTextoWait(pesquisa, MapeamentoPesquisaNoGoogle.getCampoPesquisar());
 	}
 
 	public void clicoNoBotaoPesquisar() {
-		clicaWait(CenarioGoogleMapeamento.getBotaoPesquisarGoogle());;
+		clicaWait(MapeamentoPesquisaNoGoogle.getBotaoPesquisarGoogle());;
 	}
 
 	public void validoAMensagem(String mensagem) {
