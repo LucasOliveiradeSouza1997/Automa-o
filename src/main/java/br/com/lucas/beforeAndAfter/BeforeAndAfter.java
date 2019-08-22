@@ -15,7 +15,6 @@ public class BeforeAndAfter extends Utils{
 	@After
 	public void finaliza() {
 		//String cenario = "lucas";
-		//System.out.println(this.getClass().getSimpleName());
 //		screenshot("CenarioGoogle");
 		encerra();
 	}

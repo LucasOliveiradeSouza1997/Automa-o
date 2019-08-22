@@ -1,10 +1,9 @@
 package br.com.lucas.Utils;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -37,7 +36,7 @@ public class Utils extends DriverFactory{
 			System.out.println("Mensagem Validada com sucesso: " + mensagem);
 		} catch (Exception e) {
 			System.out.println("Erro na validacao da mensagem: " + mensagem);
-			assert(false);
+			Assert.assertTrue(false);
 		}
 	}
 	
