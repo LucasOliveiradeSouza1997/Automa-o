@@ -18,9 +18,9 @@ public class BeforeAndAfter extends Utils {
 	}
 
 	@After
-	public void finaliza() {
-		System.out.println(nomeDoCenario);
-		// screenshot("CenarioGoogle");
+	public void finaliza(Scenario scenario) {
+		String status = scenario.getStatus();
+		screenshot(nomeDoCenario,status);
 		encerra();
 	}
 }
