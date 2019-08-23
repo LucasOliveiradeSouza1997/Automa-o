@@ -71,7 +71,7 @@ public class Utils extends DriverFactory {
 		String stringStatus = status.equals("passed") ? stringPassed : stringFailed;
 		String file = System.getProperty("user.dir").concat("\\evidencias\\").concat(BeforeAndAfter.getData())
 				.concat(stringStatus).concat("\\").concat(nomeTeste).concat("_")
-				.concat(BeforeAndAfter.getHora().concat("\\").concat(nomeTeste)).concat("%02d").concat(".png");
+				.concat(BeforeAndAfter.getHora().concat("\\").concat(nomeTeste)).concat("_").concat("%02d").concat(".png");
 
 		if (logStatusDoTeste(nomeTeste, status)) {
 			int i = 1;
