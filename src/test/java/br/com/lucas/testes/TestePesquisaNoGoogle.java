@@ -8,6 +8,6 @@ import cucumber.api.junit.Cucumber;
 	
 	@RunWith(Cucumber.class)
 	@CucumberOptions(features = "features/PesquisaNoGoogle.feature", glue = {	//caminho da feature do test
-			"" }, monochrome = true, dryRun = false)
+			"" },  plugin = { "pretty" },monochrome = true, dryRun = false)
 	public class TestePesquisaNoGoogle {
 	}
