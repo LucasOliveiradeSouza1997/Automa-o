@@ -9,4 +9,4 @@ Feature: Pesquisa no Google
 	
 	Examples: 
 	| pesquisa |mensagem		|
-	| google   |Aproximadamente2 |
+	| google   |Aproximadamente |
