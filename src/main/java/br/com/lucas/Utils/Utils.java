@@ -3,7 +3,9 @@ package br.com.lucas.Utils;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
@@ -12,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.lucas.beforeAndAfter.BeforeAndAfter;
 import br.com.lucas.driverFactory.DriverFactory;
@@ -21,6 +24,14 @@ public class Utils extends DriverFactory {
 	WebElement elemento;
 	private final String stringPassed = "\\Passou";
 	private final String stringFailed = "\\Falhou";
+	private static List<File> evidencias;
+	
+	public static List<File> getInstanceListEvidencias() {
+		if (evidencias == null) {
+			evidencias = new ArrayList<File>();
+		}
+		return evidencias;
+	}
 
 	public void limpaEInsereTextoWait(String texto, By campo) {
 		DriverFactory.getInstanceWait().until(ExpectedConditions.elementToBeClickable(campo));
@@ -45,23 +56,34 @@ public class Utils extends DriverFactory {
 			Assert.assertTrue(false);
 		}
 	}
+	public void screenshot() {
+		try {
+			TakesScreenshot source = (TakesScreenshot) DriverFactory.getInstance();
+			File scr = source.getScreenshotAs(OutputType.FILE);
+			getInstanceListEvidencias().add(scr);
+		} catch (Exception ex) {
+			System.out.println("Erro Geração de Evidencias.");
+		}
+	}
 
 	public void screenshot(String status) {
 		String nomeTeste = BeforeAndAfter.getNomeDoCenario();
 		String stringStatus = status.equals("passed") ? stringPassed : stringFailed;
 		String file = System.getProperty("user.dir").concat("\\evidencias\\").concat(BeforeAndAfter.getData())
 				.concat(stringStatus).concat("\\").concat(nomeTeste).concat("_")
-				.concat(BeforeAndAfter.getHora().concat("\\").concat(nomeTeste)).concat(".png");
+				.concat(BeforeAndAfter.getHora().concat("\\").concat(nomeTeste)).concat("%02d").concat(".png");
 
 		if (logStatusDoTeste(nomeTeste, status)) {
-			try {
-				TakesScreenshot source = (TakesScreenshot) DriverFactory.getInstance();
-				File scr = source.getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scr, new File(file));
-			} catch (Exception ex) {
-				System.out.println("Erro na Escrita de arquivo.");
+			int i = 1;
+			for(File scr : getInstanceListEvidencias()) {
+				try {
+					FileUtils.copyFile(scr, new File(String.format(file,i++)));
+				} catch (Exception ex) {
+					System.out.println("Erro na Escrita de arquivo.");
+				}
 			}
 		}
+		evidencias = null;
 	}
 
 	private boolean logStatusDoTeste(String nomeTeste, String status) {
