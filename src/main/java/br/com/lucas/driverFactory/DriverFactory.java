@@ -30,7 +30,7 @@ public class DriverFactory {
 		if(driverEstaInicializado()) {
 			DriverFactory.getInstance().get(url);
 		}else {
-			System.out.println("ops");
+			System.out.println("driver nao inicializado");
 		}
 	}
 
