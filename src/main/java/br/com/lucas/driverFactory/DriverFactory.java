@@ -35,20 +35,9 @@ public class DriverFactory {
 			inicializaNavegadorChrome();
 		} else if (Navegadores.FIREFOX.name().equals(navegador)) {
 			inicializaNavegorFirefox();
-		}else if (Navegadores.OPERA.name().equals(navegador)) {
-			inicializaNavegorOpera();
 		}else {
 			throw new AutomacaoException("Opcao invalida para o Navegador");
 		}
-	}
-
-	private static void inicializaNavegorOpera() {
-		
-		//driver com problema
-		DesiredCapabilities capabilities = DesiredCapabilities.operaBlink();
-		String pathDriverFirefox = System.getProperty("user.dir") + "\\drivers\\operadriver.exe";
-		System.setProperty("webdriver.opera.driver", pathDriverFirefox);
-		driver = new OperaDriver(capabilities);
 	}
 
 	private static void inicializaNavegorFirefox() {
