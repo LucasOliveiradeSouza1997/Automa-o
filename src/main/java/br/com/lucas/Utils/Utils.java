@@ -1,6 +1,11 @@
 package br.com.lucas.Utils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -115,5 +120,16 @@ public class Utils extends DriverFactory {
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		return dateFormat.format(date);
 	}
-
+	
+	public  void copy(File src, File dst) throws IOException {
+		InputStream in = new FileInputStream(src);
+		OutputStream out = new FileOutputStream(dst); // Transferindo bytes de entrada para saída
+		byte[] buf = new byte[1024];
+		int len;
+		while ((len = in.read(buf)) > 0) {
+			out.write(buf, 0, len);
+		}
+		in.close();
+		out.close();
+	}
 }

@@ -1,5 +1,6 @@
 package br.com.lucas.beforeAndAfter;
 
+import br.com.lucas.Utils.ArquivoDePropriedadesProperties;
 import br.com.lucas.Utils.Utils;
 import br.com.lucas.driverFactory.DriverFactory;
 import cucumber.api.Scenario;
@@ -26,6 +27,7 @@ public class BeforeAndAfter extends Utils {
 
 	@Before
 	public void inicializa(Scenario scenario) {
+		ArquivoDePropriedadesProperties.getInstanceArquivoDePropriedadesProperties().imprimePropriedades();
 		DriverFactory.getInstance();
 		nomeDoCenario = scenario.getName().trim().replaceAll(" ", "");
 		data = getDataYYYYMMDD().replaceAll("/", "-");
