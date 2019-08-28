@@ -30,7 +30,7 @@ public class Utils extends DriverFactory {
 	private final String stringPassed = "\\Passou";
 	private final String stringFailed = "\\Falhou";
 	private static List<File> evidencias;
-	
+
 	public static List<File> getInstanceListEvidencias() {
 		if (evidencias == null) {
 			evidencias = new ArrayList<File>();
@@ -61,6 +61,7 @@ public class Utils extends DriverFactory {
 			Assert.assertTrue(false);
 		}
 	}
+
 	public void screenshot() {
 		try {
 			TakesScreenshot source = (TakesScreenshot) DriverFactory.getInstance();
@@ -72,19 +73,21 @@ public class Utils extends DriverFactory {
 	}
 
 	public void screenshot(String status) {
-		String nomeTeste = BeforeAndAfter.getNomeDoCenario();
-		String stringStatus = status.equals("passed") ? stringPassed : stringFailed;
-		String file = System.getProperty("user.dir").concat("\\evidencias\\").concat(BeforeAndAfter.getData())
-				.concat(stringStatus).concat("\\").concat(nomeTeste).concat("_")
-				.concat(BeforeAndAfter.getHora().concat("\\").concat(nomeTeste)).concat("_").concat("%02d").concat(".png");
+		if (BeforeAndAfter.getData() != null && BeforeAndAfter.getHora() != null && BeforeAndAfter.getNomeDoCenario() != null) {
+			String nomeTeste = BeforeAndAfter.getNomeDoCenario();
+			String stringStatus = status.equals("passed") ? stringPassed : stringFailed;
+			String file = System.getProperty("user.dir").concat("\\evidencias\\").concat(BeforeAndAfter.getData())
+					.concat(stringStatus).concat("\\").concat(nomeTeste).concat("_").concat(BeforeAndAfter.getHora())
+					.concat("\\").concat(nomeTeste).concat("_").concat("%02d").concat(".png");
 
-		if (logStatusDoTeste(nomeTeste, status)) {
-			int i = 1;
-			for(File scr : getInstanceListEvidencias()) {
-				try {
-					FileUtils.copyFile(scr, new File(String.format(file,i++)));
-				} catch (Exception ex) {
-					System.out.println("Erro na Escrita de arquivo.");
+			if (logStatusDoTeste(nomeTeste, status)) {
+				int i = 1;
+				for (File scr : getInstanceListEvidencias()) {
+					try {
+						FileUtils.copyFile(scr, new File(String.format(file, i++)));
+					} catch (Exception ex) {
+						System.out.println("Erro na Escrita de arquivo.");
+					}
 				}
 			}
 		}
@@ -120,8 +123,8 @@ public class Utils extends DriverFactory {
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		return dateFormat.format(date);
 	}
-	
-	public  void copy(File src, File dst) throws IOException {
+
+	public void copy(File src, File dst) throws IOException {
 		InputStream in = new FileInputStream(src);
 		OutputStream out = new FileOutputStream(dst); // Transferindo bytes de entrada para saída
 		byte[] buf = new byte[1024];

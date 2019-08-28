@@ -30,6 +30,7 @@ public class ArquivoDePropriedadesProperties {
 			arquivoDePropriedadesProperties.seleniumGrid = properties.getProperty("seleniumGrid").equals(true) ? true:false;
 			arquivoDePropriedadesProperties.navegador = properties.getProperty("navegador");
 			arquivoDePropriedadesProperties.automatizador = properties.getProperty("automatizador");
+			arquivoDePropriedadesProperties.imprimePropriedades();
 		}
 		return arquivoDePropriedadesProperties;
 	}

@@ -10,4 +10,3 @@ Feature: Pesquisa no Google
 	Examples: 
 	| pesquisa |mensagem		|
 	| google   |Aproximadamente |
-	| google   |Aproximadamente2 |
