@@ -26,7 +26,6 @@ public class BeforeAndAfter extends Utils {
 
 	@Before
 	public void inicializa(Scenario scenario) {
-		DriverFactory.getInstance();
 		nomeDoCenario = scenario.getName().trim().replaceAll(" ", "");
 		data = getDataYYYYMMDD().replaceAll("/", "-");
 		hora = getHoraAtual().replaceAll(":", "-");

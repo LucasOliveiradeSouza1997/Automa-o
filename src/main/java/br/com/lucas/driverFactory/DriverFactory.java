@@ -56,11 +56,7 @@ public class DriverFactory {
 	}
 
 	public void navega(String url) {
-		if (driverEstaInicializado()) {
-			DriverFactory.getInstance().get(url);
-		} else {
-			System.out.println("driver nao inicializado");
-		}
+		DriverFactory.getInstance().get(url);
 	}
 
 	public void encerra() {
