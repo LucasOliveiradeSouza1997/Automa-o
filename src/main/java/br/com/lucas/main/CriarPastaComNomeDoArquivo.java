@@ -3,8 +3,8 @@ package br.com.lucas.main;
 import br.com.lucas.Utils.Utils;
 
 public class CriarPastaComNomeDoArquivo {
-	private static String caminho = "C:\\DEV\\Lucas\\Framework_Automacao\\src\\main\\java\\br\\com\\lucas\\main";
-	private static String caminhoSaida= "C:\\Users\\lucas.souza\\Desktop\\saida\\%s\\%s";
+	private static String caminho = "C:\\Users\\lucas.souza\\Desktop\\IMPRIMIR LUCAS";
+	private static String caminhoSaida= "C:\\Users\\lucas.souza\\Desktop\\saida";
 	
 	public static void main(String[] args)  {
 		
