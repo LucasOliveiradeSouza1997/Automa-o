@@ -21,6 +21,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.com.lucas.Exception.AutomacaoException;
 import br.com.lucas.beforeAndAfter.BeforeAndAfter;
 import br.com.lucas.driverFactory.DriverFactory;
 
@@ -142,6 +143,9 @@ public class Utils extends DriverFactory {
 		for (File file : arquivos) {
 			try {
 				String nome = (file.getName().split("[.]")[0]);
+				if(nome.equals("")) {
+					throw new AutomacaoException("Nome vazio");
+				}
 				File arquivoCopiado = new File(String.format("%s\\%s\\%s", caminhoSaida,nome,file.getName()));
 				FileUtils.copyFile(file, arquivoCopiado);
 				System.out.println("Criado Pasta para: " + nome);
