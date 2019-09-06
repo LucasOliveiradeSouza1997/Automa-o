@@ -135,4 +135,21 @@ public class Utils extends DriverFactory {
 		in.close();
 		out.close();
 	}
+	
+	public void criaPastasParaUmDiretorioEspecifico(String caminhoDosArquivos, String caminhoSaida) {
+		
+		File diretorio = new File(caminhoDosArquivos);
+		File[] arquivos = diretorio.listFiles();
+		for (File file : arquivos) {
+			try {
+				String nome = (file.getName().split("[.]")[0]);
+				File arquivoCopiado = new File(String.format(caminhoSaida, nome,file.getName()));
+				FileUtils.copyFile(file, arquivoCopiado);
+				System.out.println("Criado Pasta para: " + nome);
+			} catch (Exception e) {
+				System.out.println("Falhou: " + file.getName());
+			}
+		}
+		System.out.println("Finalizado!");
+	}
 }
