@@ -2,6 +2,7 @@ package br.com.lucas.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +22,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.lowagie.text.Chunk;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfWriter;
+
 import br.com.lucas.Exception.AutomacaoException;
 import br.com.lucas.beforeAndAfter.BeforeAndAfter;
 import br.com.lucas.driverFactory.DriverFactory;
@@ -30,6 +40,7 @@ public class Utils extends DriverFactory {
 	WebElement elemento;
 	private final String stringPassed = "\\Passou";
 	private final String stringFailed = "\\Falhou";
+	private final String AUTHOR = "Lucas Oliveira de Souza";
 	private static List<File> evidencias;
 
 	public static List<File> getInstanceListEvidencias() {
@@ -85,14 +96,49 @@ public class Utils extends DriverFactory {
 				int i = 1;
 				for (File scr : getInstanceListEvidencias()) {
 					try {
-						FileUtils.copyFile(scr, new File(String.format(file, i++)));
+						File evidencia = new File(String.format(file, i++));
+						FileUtils.copyFile(scr, evidencia);
 					} catch (Exception ex) {
 						System.out.println("Erro na Escrita de arquivo.");
 					}
 				}
+				gravaNoDocumento(nomeTeste, getInstanceListEvidencias());
 			}
 		}
 		evidencias = null;
+	}
+
+	private void gravaNoDocumento(String nomeDoTeste, List<File> list){
+		try {
+			Document document = new Document( PageSize.A4, 30,30,30,30 );
+		    PdfWriter.getInstance(document, new FileOutputStream(System.getProperty("user.dir").concat("\\relatorios\\").concat(nomeDoTeste).concat(".pdf")));
+		    document.open();
+//		    document.addAuthor(AUTHOR);
+//		    document.addTitle("Framework Automacao");
+		    document.addCreationDate();
+		    Chunk string = new Chunk(nomeDoTeste);
+		    Font fonte = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
+		    string.setFont(fonte);
+		    document.add(string); 
+		    Image png;
+			try {
+				for (File evid : list) {
+					png = Image.getInstance(evid.getCanonicalPath());
+					png.scaleAbsolute(500, 300);
+//				    png.setAlignment(Image.LEFT | Image.TEXTWRAP);  
+				    document.add(png);
+				}
+			} catch (IOException e) {
+				System.out.println("Erro na gravacao das evidencias");
+				e.printStackTrace();
+			}
+		    
+		    document.close();
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		} catch (DocumentException e) {
+		    e.printStackTrace();
+		}
 	}
 
 	private boolean logStatusDoTeste(String nomeTeste, String status) {

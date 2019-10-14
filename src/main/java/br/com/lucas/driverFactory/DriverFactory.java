@@ -3,6 +3,7 @@ package br.com.lucas.driverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.lucas.Enum.Navegadores;
@@ -31,9 +32,17 @@ public class DriverFactory {
 			inicializaNavegadorChrome();
 		} else if (Navegadores.FIREFOX.name().equals(navegador)) {
 			inicializaNavegorFirefox();
+		} else if (Navegadores.INTERNET_EXPLORER.name().equals(navegador)) {
+			inicializaNavegadorInternetExplorer();	
 		}else {
 			throw new AutomacaoException("Opcao invalida para o Navegador");
 		}
+	}
+
+	private static void inicializaNavegadorInternetExplorer() {
+		String pathDriverFirefox = System.getProperty("user.dir") + "\\drivers\\IEDriverServer.exe";
+		System.setProperty("webdriver.ie.driver", pathDriverFirefox);
+		driver = new InternetExplorerDriver();
 	}
 
 	private static void inicializaNavegorFirefox() {

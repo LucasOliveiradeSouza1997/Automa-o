@@ -1,5 +1,5 @@
 package br.com.lucas.Enum;
 
 public enum Navegadores {
-	CHROME,FIREFOX
+	CHROME,FIREFOX,INTERNET_EXPLORER
 }
